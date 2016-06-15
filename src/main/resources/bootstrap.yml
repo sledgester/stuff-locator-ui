@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: stuff-locator-ui
+
+server:
+  port: 8022
+
+eureka:
+  instance:
+    nonSecurePort: ${server.port:8080}
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/

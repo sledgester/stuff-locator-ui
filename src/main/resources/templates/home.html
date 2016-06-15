@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Home Page</title>
+    </head>
+    <body>
+        <h1 style="text-align: center" th:text="#{home.message}">Pony</h1>
+
+        <div style="text-align: center">
+            <span style="width: 50%; text-align: center; float: left;"><a th:href="@{/mainMenu(lang=en)}">English</a></span><span style="width: 50%; text-align: center; float: right;"><a th:href="@{/mainMenu(lang=fr)}">Français</a></span>
+        </div>
+    </body>
+</html>

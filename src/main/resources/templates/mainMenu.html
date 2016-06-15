@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>MainMenu</title>
+    </head>
+    <body>
+        <h1>
+            <span th:text="#{hello}"></span><span th:inline="text"> [[${#httpServletRequest.remoteUser}]]!</span>
+        </h1>
+
+        <div>
+            <p><a th:href="@{/room}" th:text="#{rooms}">Pony</a></p>
+            <p><a th:href="@{/article}" th:text="#{articles}">Pony</a></p>
+            <p><a th:href="@{/account}" th:text="#{accounts}">Pony</a></p>
+        </div>
+
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" th:value="#{btn.sign_out}"/>
+        </form>
+    </body>
+</html>
