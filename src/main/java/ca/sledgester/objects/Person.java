@@ -1,17 +1,13 @@
 package ca.sledgester.objects;
 
+import lombok.Data;
+
 /**
  * Created by Sledgester on 2016-06-06.
  */
+@Data
 public class Person {
 
     private String name;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
