@@ -1,4 +1,4 @@
-package ca.sledgester.objects;
+package ca.sledgester.article;
 
 import lombok.Data;
 

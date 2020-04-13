@@ -6,7 +6,7 @@
 	<groupId>ca.sledgester</groupId>
 	<artifactId>stuff-locator-ui</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>stuff-locator-ui</name>
 	<description>Stuff Locator UI</description>

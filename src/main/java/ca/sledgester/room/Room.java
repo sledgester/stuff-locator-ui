@@ -1,4 +1,4 @@
-package ca.sledgester.objects;
+package ca.sledgester.room;
 
 import lombok.Data;
 

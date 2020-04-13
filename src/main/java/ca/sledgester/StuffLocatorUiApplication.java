@@ -3,7 +3,6 @@ package ca.sledgester;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -15,7 +14,7 @@ import java.util.Locale;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 public class StuffLocatorUiApplication extends WebMvcConfigurerAdapter {
 
 	public static void main(String[] args) throws Throwable {
