@@ -1,5 +1,6 @@
 package ca.sledgester.container;
 
+import ca.sledgester.room.Room;
 import lombok.Data;
 
 /**
@@ -12,5 +13,6 @@ public class Container {
     private String description;
     private int type;
     private int shelfNumber;
+    private Room room;
 
 }

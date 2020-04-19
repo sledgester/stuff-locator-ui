@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class MainMenuController {
+
     @RequestMapping("/mainMenu")
     public String mainMenu() {
+
         return "mainMenu";
+
     }
 }

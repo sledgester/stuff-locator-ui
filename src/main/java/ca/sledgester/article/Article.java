@@ -1,5 +1,7 @@
 package ca.sledgester.article;
 
+import ca.sledgester.container.Container;
+import ca.sledgester.person.Person;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -12,5 +14,7 @@ public class Article {
 
     private String name;
     private BigDecimal value;
+    private Person person;
+    private Container container;
 
 }
