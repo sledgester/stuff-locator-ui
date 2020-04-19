@@ -6,7 +6,7 @@
         <title>People</title>
     </head>
     <body>
-        <form th:action="@{/person}" th:object="${person}" method="post">
+        <form th:action="@{/person}" th:object="${personForm}" method="post">
             <h1 th:text="#{people}">Pony</h1>
             <div>
                 <span style="width: 20%; float: left;" th:text="#{person.first.name}">Pony</span>

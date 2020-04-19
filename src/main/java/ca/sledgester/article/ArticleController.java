@@ -13,16 +13,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ArticleController {
 
     @RequestMapping(value="/article", method= RequestMethod.GET)
-    public String article(@ModelAttribute Article article) {
+    public String article(@ModelAttribute ArticleForm articleForm) {
 
         return "article";
 
     }
 
     @RequestMapping(value="/article", method= RequestMethod.POST, params = "save")
-    public String articleCreatePost(@ModelAttribute Article article) {
+    public String articleCreatePost(@ModelAttribute ArticleForm articleForm) {
 
+        Article article = new Article();
         ArticleService articleService = new ArticleService();
+
+        article = articleService.populateObject(articleForm);
 
         articleService.createArticle(article);
 
@@ -31,13 +34,16 @@ public class ArticleController {
     }
 
     @RequestMapping(value="/article", method= RequestMethod.POST, params = "search")
-    public String articleSearchPost(@ModelAttribute Article article, Model model) {
+    public String articleSearchPost(@ModelAttribute ArticleForm articleForm, Model model) {
 
+        Article article = new Article();
         ArticleService articleService = new ArticleService();
 
-        article = articleService.searchArticle(article);
+        article = articleService.searchArticle(articleForm);
 
-        model.addAttribute(article);
+        articleForm = articleService.populateForm(article);
+
+        model.addAttribute(articleForm);
 
         return "article";
 

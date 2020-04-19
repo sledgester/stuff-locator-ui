@@ -13,16 +13,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RoomController {
 
     @RequestMapping(value="/room", method= RequestMethod.GET)
-    public String room(@ModelAttribute Room room) {
+    public String room(@ModelAttribute RoomForm roomForm) {
 
         return "room";
 
     }
 
     @RequestMapping(value="/room", method= RequestMethod.POST, params = "save")
-    public String roomCreatePost(@ModelAttribute Room room) {
+    public String roomCreatePost(@ModelAttribute RoomForm roomForm) {
 
+        Room room = new Room();
         RoomService roomService = new RoomService();
+
+        room = roomService.populateObject(roomForm);
 
         roomService.createRoom(room);
 
@@ -31,13 +34,16 @@ public class RoomController {
     }
 
     @RequestMapping(value="/room", method= RequestMethod.POST, params = "search")
-    public String roomSearchPost(@ModelAttribute Room room, Model model) {
+    public String roomSearchPost(@ModelAttribute RoomForm roomForm, Model model) {
 
+        Room room = new Room();
         RoomService roomService = new RoomService();
 
-        room = roomService.searchRoom(room);
+        room = roomService.searchRoom(roomForm);
 
-        model.addAttribute(room);
+        roomForm = roomService.populateForm(room);
+
+        model.addAttribute(roomForm);
 
         return "room";
 
@@ -49,4 +55,5 @@ public class RoomController {
         return "mainMenu";
 
     }
+
 }
