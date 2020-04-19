@@ -11,9 +11,15 @@ import java.util.List;
 @Data
 public class Person {
 
+    private Long id;
     private String lastName;
     private String firstName;
     private int age;
     private List<Article> articles;
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
 
 }

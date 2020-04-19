@@ -9,5 +9,7 @@ public class ArticleForm {
 
     private String name;
     private BigDecimal value;
+    private Long containerId;
+    private Long personId;
 
 }

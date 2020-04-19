@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class PersonService {
 
@@ -76,4 +79,39 @@ public class PersonService {
 
     }
 
+    public List<Person> getAllPeopleFaked() {
+
+        List<Person> personList = new ArrayList<>();
+
+        Person person = new Person();
+        person.setId(1L);
+        person.setFirstName("Un");
+        person.setLastName("Homme");
+        person.setAge(40);
+        personList.add(person);
+
+        person = new Person();
+        person.setId(2L);
+        person.setFirstName("Une");
+        person.setLastName("Femme");
+        person.setAge(37);
+        personList.add(person);
+
+        person = new Person();
+        person.setId(3L);
+        person.setFirstName("Un");
+        person.setLastName("Enfant");
+        person.setAge(12);
+        personList.add(person);
+
+        person = new Person();
+        person.setId(4L);
+        person.setFirstName("Autre");
+        person.setLastName("Enfant");
+        person.setAge(10);
+        personList.add(person);
+
+        return personList;
+
+    }
 }

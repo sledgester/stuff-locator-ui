@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 public class Container {
 
+    private Long id;
     private int number;
     private String description;
     private int type;

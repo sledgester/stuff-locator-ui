@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ContainerService {
 
@@ -80,6 +83,46 @@ public class ContainerService {
         containerForm.setType(container.getType());
 
         return containerForm;
+
+    }
+
+    public List<Container> getAllContainersFaked() {
+
+        List<Container> containerList = new ArrayList<>();
+
+        Container container = new Container();
+        container.setId(1L);
+        container.setDescription("Armoire à gauche de la fenêtre");
+        container.setNumber(1);
+        container.setShelfNumber(4);
+        container.setType(1);
+        containerList.add(container);
+
+        container = new Container();
+        container.setId(2L);
+        container.setDescription("Armoire à droite de la fenêtre");
+        container.setNumber(3);
+        container.setShelfNumber(3);
+        container.setType(1);
+        containerList.add(container);
+
+        container = new Container();
+        container.setId(3L);
+        container.setDescription("Armoire à gauche du micro-ondes");
+        container.setNumber(5);
+        container.setShelfNumber(3);
+        container.setType(1);
+        containerList.add(container);
+
+        container = new Container();
+        container.setId(4L);
+        container.setDescription("Armoire au dessus du micro-ondes");
+        container.setNumber(7);
+        container.setShelfNumber(2);
+        container.setType(1);
+        containerList.add(container);
+
+        return containerList;
 
     }
 
