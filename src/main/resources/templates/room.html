@@ -6,13 +6,31 @@
         <title>Rooms</title>
     </head>
     <body>
-        <form th:action="@{/room}" th:object="${roomForm}" method="post">
+        <form th:action="@{/room}" th:object="${roomForm}" th:method="post" enctype="multipart/form-data">
             <h1 th:text="#{rooms}">Rooms</h1>
             <div>
-                <span style="width: 20%; float: left;" th:text="#{room.name}">Pony</span>
-                <span style="width: 80%; float: left;">
-                    <input type="text" th:field="*{name}"/>
-                </span>
+                <p>
+                    <span style="width: 20%; float: left;" th:text="#{room.name}">Pony</span>
+                    <span style="width: 80%; float: left;">
+                        <input type="text" th:field="*{name}"/>
+                    </span>
+                </p>
+                <div th:if="*{planString}">
+                    <p>
+                        <span style="width: 20%; float: left;" th:text="#{room.plan}">Pony</span>
+                        <span style="width: 80%; float: left;">
+                            <img th:src="*{'data:image/png;base64,'+planString}"/>
+                        </span>
+                    </p>
+                </div>
+                <div th:unless="*{planString}">
+                    <p>
+                        <span style="width: 20%; float: left;" th:text="#{room.plan}">Pony</span>
+                        <span style="width: 80%; float: left;">
+                            <input type="file" th:field="*{planImage}" th:style="'color:green;'" th:accept=".jpg"/>
+                        </span>
+                    </p>
+                </div>
                 <p>
                     <span>
                         <input type="submit" name="save" th:value="#{btn.save}" th:style="'color:green;'"/>

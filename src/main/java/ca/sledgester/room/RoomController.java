@@ -26,6 +26,7 @@ public class RoomController {
         RoomService roomService = new RoomService();
 
         room = roomService.populateObject(roomForm);
+        room.setPlanString(roomService.planImageToBase64String(roomForm));
 
         roomService.createRoom(room);
 

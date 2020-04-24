@@ -1,0 +1,9 @@
+Bring back lists for search results instead of exact match only
+Show search results list
+Load code tables
+Apply CSS
+Apply validations
+Add pictures to articles
+PDF report of room content
+Add possibility to edit
+Accepts bigger images and of different types
