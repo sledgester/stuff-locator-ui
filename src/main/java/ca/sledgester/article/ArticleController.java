@@ -4,6 +4,7 @@ import ca.sledgester.container.Container;
 import ca.sledgester.container.ContainerService;
 import ca.sledgester.person.Person;
 import ca.sledgester.person.PersonService;
+import ca.sledgester.utils.Utils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,9 +40,13 @@ public class ArticleController {
 
         Article article = new Article();
         ArticleService articleService = new ArticleService();
+        Utils utils = new Utils();
 
         article = articleService.populateObject(articleForm);
 
+        if (!articleForm.getPictureImage().getOriginalFilename().equals("")) {
+            article.setPictureString(utils.imageToBase64String(articleForm.getPictureImage()));
+        }
         articleService.saveArticle(article);
 
         return "article";

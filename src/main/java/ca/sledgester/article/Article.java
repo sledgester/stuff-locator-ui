@@ -15,6 +15,7 @@ public class Article {
     private Long id;
     private String name;
     private BigDecimal value;
+    private String pictureString;
     private Person person;
     private Container container;
 

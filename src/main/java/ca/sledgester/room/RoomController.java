@@ -1,5 +1,6 @@
 package ca.sledgester.room;
 
+import ca.sledgester.utils.Utils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,11 +25,12 @@ public class RoomController {
 
         Room room = new Room();
         RoomService roomService = new RoomService();
+        Utils utils = new Utils();
 
         room = roomService.populateObject(roomForm);
 
-        if (!roomForm.getPlanImage().getOriginalFilename().equals("")) {
-            room.setPlanString(roomService.planImageToBase64String(roomForm));
+        if (!roomForm.getPictureImage().getOriginalFilename().equals("")) {
+            room.setPictureString(utils.imageToBase64String(roomForm.getPictureImage()));
         }
 
         roomService.saveRoom(room);

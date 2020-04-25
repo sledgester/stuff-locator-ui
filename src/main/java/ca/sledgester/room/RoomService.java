@@ -1,7 +1,5 @@
 package ca.sledgester.room;
 
-import com.google.common.io.ByteStreams;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -11,8 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +62,7 @@ public class RoomService {
 
         room.setId(roomForm.getId());
         room.setName(roomForm.getName());
-        room.setPlanString(roomForm.getPlanString());
+        room.setPictureString(roomForm.getPictureString());
 
         return room;
 
@@ -78,40 +74,9 @@ public class RoomService {
 
         roomForm.setId(room.getId());
         roomForm.setName(room.getName());
-        roomForm.setPlanString(room.getPlanString());
+        roomForm.setPictureString(room.getPictureString());
 
         return roomForm;
-
-    }
-
-    public String planImageToBase64String(RoomForm roomForm) {
-
-        byte[] filecontent = null;
-        String planString = "";
-
-        try
-        {
-            InputStream inputStream = roomForm.getPlanImage().getInputStream();
-
-            if(inputStream == null) {
-
-                System.out.println("Null inputstream");
-
-            } else {
-
-                filecontent = ByteStreams.toByteArray(inputStream);
-
-            }
-
-            planString =  Base64.encodeBase64String(filecontent);
-
-        } catch(IOException ex) {
-
-            System.out.println("IOException");
-
-        }
-
-        return planString;
 
     }
 

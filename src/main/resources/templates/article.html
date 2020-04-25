@@ -6,7 +6,7 @@
         <title>Articles</title>
     </head>
     <body>
-        <form th:action="@{/article}" th:object="${articleForm}" method="post">
+        <form th:action="@{/article}" th:object="${articleForm}" th:method="post" enctype="multipart/form-data">
             <h1 th:text="#{articles}">Pony</h1>
             <div>
                 <p>
@@ -40,6 +40,20 @@
                                     th:value="${person.id}"
                                     th:utext="${person.fullName}"/>
                         </select>
+                    </span>
+                </p>
+                <div th:if="*{pictureString}">
+                    <p>
+                        <span style="width: 20%; float: left;" th:text="#{article.picture}">Pony</span>
+                        <span style="width: 80%; float: left;">
+                            <img th:src="*{'data:image/png;base64,'+pictureString}"/>
+                        </span>
+                    </p>
+                </div>
+                <p>
+                    <span style="width: 20%; float: left;" th:text="#{article.picture}">Pony</span>
+                    <span style="width: 80%; float: left;">
+                        <input type="file" th:field="*{pictureImage}" th:style="'color:green;'" th:accept=".jpg"/>
                     </span>
                 </p>
                 <p>

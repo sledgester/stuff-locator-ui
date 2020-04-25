@@ -8,6 +8,6 @@ public class RoomForm {
 
     private Long id;
     private String name;
-    private MultipartFile planImage;
-    private String planString;
+    private MultipartFile pictureImage;
+    private String pictureString;
 }

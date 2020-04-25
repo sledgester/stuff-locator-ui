@@ -59,6 +59,7 @@ public class ArticleService {
         article.setId(articleForm.getId());
         article.setName(articleForm.getName());
         article.setValue(articleForm.getValue());
+        article.setPictureString(articleForm.getPictureString());
 
         return article;
 
@@ -71,6 +72,7 @@ public class ArticleService {
         articleForm.setId(article.getId());
         articleForm.setValue(article.getValue());
         articleForm.setName(article.getName());
+        articleForm.setPictureString(article.getPictureString());
 
         return articleForm;
 

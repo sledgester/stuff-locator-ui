@@ -13,7 +13,7 @@ public class Room {
 
     private Long id;
     private String name;
-    private String planString;
+    private String pictureString;
     private List<Container> containers;
 
 }
