@@ -20,14 +20,14 @@ public class PersonController {
     }
 
     @RequestMapping(value="/person", method= RequestMethod.POST, params = "save")
-    public String personCreatePost(@ModelAttribute PersonForm personForm) {
+    public String personSavePost(@ModelAttribute PersonForm personForm) {
 
         Person person = new Person();
         PersonService personService = new PersonService();
 
         person = personService.populateObject(personForm);
 
-        personService.createPerson(person);
+        personService.savePerson(person);
 
         return "person";
 

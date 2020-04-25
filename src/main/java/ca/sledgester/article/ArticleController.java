@@ -35,14 +35,14 @@ public class ArticleController {
     }
 
     @RequestMapping(value="/article", method= RequestMethod.POST, params = "save")
-    public String articleCreatePost(@ModelAttribute ArticleForm articleForm) {
+    public String articleSavePost(@ModelAttribute ArticleForm articleForm) {
 
         Article article = new Article();
         ArticleService articleService = new ArticleService();
 
         article = articleService.populateObject(articleForm);
 
-        articleService.createArticle(article);
+        articleService.saveArticle(article);
 
         return "article";
 

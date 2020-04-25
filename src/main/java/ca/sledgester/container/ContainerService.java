@@ -17,7 +17,7 @@ public class ContainerService {
 
     String url = "";
 
-    public void createContainer (Container container) {
+    public void saveContainer(Container container) {
 
         url = "http://localhost:8044/containers/";
 
@@ -63,6 +63,7 @@ public class ContainerService {
 
         room.setId(containerForm.getRoomId());
 
+        container.setId(containerForm.getId());
         container.setDescription(containerForm.getDescription());
         container.setType(containerForm.getType());
         container.setShelfNumber(containerForm.getShelfNumber());
@@ -76,9 +77,9 @@ public class ContainerService {
     public ContainerForm populateForm(Container container) {
         ContainerForm containerForm = new ContainerForm();
 
+        containerForm.setId(container.getId());
         containerForm.setDescription(container.getDescription());
         containerForm.setNumber(container.getNumber());
-        //containerForm.setRoomId(container.getRoom().getId());
         containerForm.setShelfNumber(container.getShelfNumber());
         containerForm.setType(container.getType());
 

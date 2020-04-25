@@ -21,7 +21,7 @@ public class RoomService {
 
     String url = "";
 
-    public void createRoom(Room room) {
+    public void saveRoom(Room room) {
 
         url = "http://localhost:8044/rooms/";
 
@@ -64,6 +64,7 @@ public class RoomService {
 
         Room room = new Room();
 
+        room.setId(roomForm.getId());
         room.setName(roomForm.getName());
         room.setPlanString(roomForm.getPlanString());
 
@@ -75,6 +76,7 @@ public class RoomService {
 
         RoomForm roomForm = new RoomForm();
 
+        roomForm.setId(room.getId());
         roomForm.setName(room.getName());
         roomForm.setPlanString(room.getPlanString());
 

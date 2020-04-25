@@ -27,7 +27,7 @@ public class ContainerController {
     }
 
     @RequestMapping(value="/container", method= RequestMethod.POST, params = "save")
-    public String containerCreatePost(@ModelAttribute ContainerForm containerForm, Model model) {
+    public String containerSavePost(@ModelAttribute ContainerForm containerForm, Model model) {
 
         Container container = new Container();
         ContainerService containerService = new ContainerService();
@@ -36,7 +36,7 @@ public class ContainerController {
 
         container = containerService.populateObject(containerForm);
 
-        containerService.createContainer(container);
+        containerService.saveContainer(container);
 
         return "container";
 

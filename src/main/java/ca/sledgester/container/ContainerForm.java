@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class ContainerForm {
 
+    private Long id;
     private int number;
     private String description;
     private int type;

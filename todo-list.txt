@@ -5,5 +5,5 @@ Apply CSS
 Apply validations
 Add pictures to articles
 PDF report of room content
-Add possibility to edit
+Fix edit room to keep the plan image when just updating room name
 Accepts bigger images and of different types

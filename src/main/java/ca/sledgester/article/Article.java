@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @Data
 public class Article {
 
+    private Long id;
     private String name;
     private BigDecimal value;
     private Person person;

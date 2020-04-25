@@ -20,15 +20,19 @@ public class RoomController {
     }
 
     @RequestMapping(value="/room", method= RequestMethod.POST, params = "save")
-    public String roomCreatePost(@ModelAttribute RoomForm roomForm) {
+    public String roomSavePost(@ModelAttribute RoomForm roomForm) {
 
         Room room = new Room();
         RoomService roomService = new RoomService();
 
         room = roomService.populateObject(roomForm);
-        room.setPlanString(roomService.planImageToBase64String(roomForm));
 
-        roomService.createRoom(room);
+        if (!roomForm.getPlanImage().getOriginalFilename().equals("")) {
+            room.setPlanString(roomService.planImageToBase64String(roomForm));
+        }
+
+        roomService.saveRoom(room);
+
 
         return "room";
 

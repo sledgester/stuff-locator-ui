@@ -13,7 +13,7 @@ public class ArticleService {
 
     String url = "";
 
-    public void createArticle(Article article) {
+    public void saveArticle(Article article) {
 
         url = "http://localhost:8044/articles/";
 
@@ -56,6 +56,7 @@ public class ArticleService {
 
         Article article = new Article();
 
+        article.setId(articleForm.getId());
         article.setName(articleForm.getName());
         article.setValue(articleForm.getValue());
 
@@ -67,6 +68,7 @@ public class ArticleService {
 
         ArticleForm articleForm = new ArticleForm();
 
+        articleForm.setId(article.getId());
         articleForm.setValue(article.getValue());
         articleForm.setName(article.getName());
 

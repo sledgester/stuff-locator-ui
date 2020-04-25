@@ -16,7 +16,7 @@ public class PersonService {
 
     String url = "";
 
-    public void createPerson(Person person) {
+    public void savePerson(Person person) {
 
         url = "http://localhost:8044/people/";
 
@@ -59,6 +59,7 @@ public class PersonService {
 
         Person person = new Person();
 
+        person.setId(personForm.getId());
         person.setAge(personForm.getAge());
         person.setFirstName(personForm.getFirstName());
         person.setLastName(personForm.getLastName());
@@ -71,6 +72,7 @@ public class PersonService {
 
         PersonForm personForm = new PersonForm();
 
+        personForm.setId(person.getId());
         personForm.setAge(person.getAge());
         personForm.setFirstName(person.getFirstName());
         personForm.setLastName(person.getLastName());
