@@ -3,7 +3,8 @@ Show search results list
 Load code tables
 Apply CSS
 Apply validations
-Add pictures to articles
 PDF report of room content
-Fix edit room to keep the plan image when just updating room name
+Fix edit room and article to keep the image when not selecting a picture
 Accepts bigger images and of different types
+Fix save container ... it updates always id 1 instead of creating a new one
+Save the linked entities like person id in article

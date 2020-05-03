@@ -1,5 +1,7 @@
 package ca.sledgester.container;
 
+import ca.sledgester.codetables.ContainerType;
+import ca.sledgester.codetables.ContainerTypeService;
 import ca.sledgester.room.Room;
 import ca.sledgester.room.RoomService;
 import org.springframework.stereotype.Controller;
@@ -20,7 +22,8 @@ public class ContainerController {
     @RequestMapping(value="/container", method= RequestMethod.GET)
     public String container(@ModelAttribute ContainerForm containerForm, Model model) {
 
-        model.addAttribute(loadCodeTables());
+        model.addAttribute(loadContainerTypes());
+        model.addAttribute(loadRooms());
 
         return "container";
 
@@ -32,7 +35,7 @@ public class ContainerController {
         Container container = new Container();
         ContainerService containerService = new ContainerService();
 
-        model.addAttribute(loadCodeTables());
+        model.addAttribute(loadRooms());
 
         container = containerService.populateObject(containerForm);
 
@@ -48,7 +51,7 @@ public class ContainerController {
         Container container = new Container();
         ContainerService containerService = new ContainerService();
 
-        model.addAttribute(loadCodeTables());
+        model.addAttribute(loadRooms());
 
         container = containerService.searchContainer(containerForm);
 
@@ -67,12 +70,21 @@ public class ContainerController {
 
     }
 
-    private List<Room> loadCodeTables() {
+    private List<Room> loadRooms() {
         RoomService roomService = new RoomService();
 
-        List<Room> roomList = roomService.getAllRoomsFaked();
+        List<Room> roomList = roomService.getAllRooms();
 
         return roomList;
+
+    }
+
+    private List<ContainerType> loadContainerTypes() {
+        ContainerTypeService containerTypeService = new ContainerTypeService();
+
+        List<ContainerType> containerTypeList = containerTypeService.getAllContainerTypes();
+
+        return containerTypeList;
 
     }
 

@@ -11,5 +11,6 @@ public class ContainerForm {
     private int type;
     private int shelfNumber;
     private Long roomId;
+    private Long containerTypeId;
 
 }

@@ -1,5 +1,6 @@
 package ca.sledgester.person;
 
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -37,21 +38,23 @@ public class PersonService {
 
     public Person searchPerson(PersonForm personForm) {
 
-        url = "http://localhost:8044/people/search/findByLastNameIgnoreCaseOrFirstNameIgnoreCase?lastName={lastName}&firstName={firsttName}";
+        url = "http://localhost:8044/controllers/searchPeople?lastName={lastName}&firstName={firsttName}&age={age}";
 
-        Person person = new Person();
+        List<Person> personList = new ArrayList<>();
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-            ResponseEntity<Person> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, Person.class, personForm.getLastName(), personForm.getFirstName());
-            person = responseEntity.getBody();
-        }catch(HttpClientErrorException e) {
+            ResponseEntity<List<Person>> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Person>>() {
+            }, personForm.getLastName(), personForm.getFirstName(), personForm.getAge());
+            personList = responseEntity.getBody();
+        } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
-                person = new Person();
+
+                System.out.println("Problem!");
             }
         }
 
-        return person;
+        return personList.get(0);
 
     }
 
@@ -81,37 +84,23 @@ public class PersonService {
 
     }
 
-    public List<Person> getAllPeopleFaked() {
+    public List<Person> getAllPeople() {
+
+        url = "http://localhost:8044/controllers/allPeople";
 
         List<Person> personList = new ArrayList<>();
+        RestTemplate restTemplate = new RestTemplate();
 
-        Person person = new Person();
-        person.setId(1L);
-        person.setFirstName("Un");
-        person.setLastName("Homme");
-        person.setAge(40);
-        personList.add(person);
+        try {
+            ResponseEntity<List<Person>> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Person>>() {
+            });
+            personList = responseEntity.getBody();
+        } catch (HttpClientErrorException e) {
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
 
-        person = new Person();
-        person.setId(2L);
-        person.setFirstName("Une");
-        person.setLastName("Femme");
-        person.setAge(37);
-        personList.add(person);
-
-        person = new Person();
-        person.setId(3L);
-        person.setFirstName("Un");
-        person.setLastName("Enfant");
-        person.setAge(12);
-        personList.add(person);
-
-        person = new Person();
-        person.setId(4L);
-        person.setFirstName("Autre");
-        person.setLastName("Enfant");
-        person.setAge(10);
-        personList.add(person);
+                System.out.println("Problem!");
+            }
+        }
 
         return personList;
 

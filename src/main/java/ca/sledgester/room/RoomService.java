@@ -82,35 +82,22 @@ public class RoomService {
 
     public List<Room> getAllRooms() {
 
-        url = "http://localhost:8044/rooms/";
+        url = "http://localhost:8044/controllers/allRooms/";
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<Room>> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Room>>() {
-        });
-        List<Room> roomList = responseEntity.getBody();
-
-        return roomList;
-
-    }
-
-    public List<Room> getAllRoomsFaked() {
-
         List<Room> roomList = new ArrayList<>();
 
-        Room room = new Room();
-        room.setId(1L);
-        room.setName("cuisine");
-        roomList.add(room);
+        try {
+            ResponseEntity<List<Room>> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Room>>() {
+            });
+            roomList = responseEntity.getBody();
+        }
+        catch (HttpClientErrorException e) {
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
 
-        room = new Room();
-        room.setId(2L);
-        room.setName("salon");
-        roomList.add(room);
-
-        room = new Room();
-        room.setId(3L);
-        room.setName("salle de bain");
-        roomList.add(room);
+                System.out.println("Problem!");
+            }
+        }
 
         return roomList;
 

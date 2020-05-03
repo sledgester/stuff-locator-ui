@@ -22,14 +22,9 @@ public class ArticleController {
     @RequestMapping(value="/article", method= RequestMethod.GET)
     public String article(@ModelAttribute ArticleForm articleForm, Model model) {
 
-        ContainerService containerService = new ContainerService();
-        PersonService personService = new PersonService();
 
-        List<Container> containerList = containerService.getAllContainersFaked();
-        List<Person> personList = personService.getAllPeopleFaked();
-
-        model.addAttribute(containerList);
-        model.addAttribute(personList);
+        model.addAttribute(loadContainers());
+        model.addAttribute(loadPeople());
 
         return "article";
 
@@ -75,4 +70,23 @@ public class ArticleController {
         return "mainMenu";
 
     }
+
+    private List<Container> loadContainers() {
+        ContainerService containerService = new ContainerService();
+
+        List<Container> containerList = containerService.getAllContainers();
+
+        return containerList;
+
+    }
+
+    private List<Person> loadPeople() {
+        PersonService personService = new PersonService();
+
+        List<Person> peopleList = personService.getAllPeople();
+
+        return peopleList;
+
+    }
+
 }
