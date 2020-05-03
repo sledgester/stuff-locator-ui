@@ -39,21 +39,23 @@ public class ContainerService {
 
     public Container searchContainer(ContainerForm containerForm) {
 
-        url = "http://localhost:8044/containers/search/findByDescriptionIgnoreCase?description={description}";
+        url = "http://localhost:8044/controllers/searchContainers?description={description}";
 
-        Container container = new Container();
+        List<Container> containerList = new ArrayList<>();
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-            ResponseEntity<Container> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, Container.class, containerForm.getDescription());
-            container = responseEntity.getBody();
+            ResponseEntity<List<Container>> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Container>>() {
+            }, containerForm.getDescription());
+            containerList = responseEntity.getBody();
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
-                container = new Container();
+
+                System.out.println("Problem!");
             }
         }
 
-        return container;
+        return containerList.get(0);
 
     }
 

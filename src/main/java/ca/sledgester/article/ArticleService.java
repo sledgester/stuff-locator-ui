@@ -1,5 +1,6 @@
 package ca.sledgester.article;
 
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -7,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ArticleService {
@@ -34,21 +38,23 @@ public class ArticleService {
 
     public Article searchArticle(ArticleForm articleForm) {
 
-        url = "http://localhost:8044/articles/search/findByNameIgnoreCase?name={name}";
+        url = "http://localhost:8044/controllers/searchArticles?name={name}";
 
-        Article article = new Article();
+        List<Article> articleList = new ArrayList<>();
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-            ResponseEntity<Article> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, Article.class, articleForm.getName());
-            article = responseEntity.getBody();
-        } catch(HttpClientErrorException e) {
+            ResponseEntity<List<Article>> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Article>>() {
+            }, articleForm.getName());
+            articleList = responseEntity.getBody();
+        } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
-                article = new Article();
+
+                System.out.println("Problem!");
             }
         }
 
-        return article;
+        return articleList.get(0);
 
     }
 

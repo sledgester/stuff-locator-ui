@@ -38,21 +38,23 @@ public class RoomService {
 
     public Room searchRoom (RoomForm roomForm) {
 
-        url = "http://localhost:8044/rooms/search/findByNameIgnoreCase?name={name}";
+        url = "http://localhost:8044/controllers/searchRooms?name={name}";
 
-        Room room = new Room();
+        List<Room> roomList = new ArrayList<>();
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-            ResponseEntity<Room> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, Room.class, roomForm.getName());
-            room = responseEntity.getBody();
-        } catch(HttpClientErrorException e) {
+            ResponseEntity<List<Room>> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Room>>() {
+            }, roomForm.getName());
+            roomList = responseEntity.getBody();
+        } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
-                room = new Room();
+
+                System.out.println("Problem!");
             }
         }
 
-        return room;
+        return roomList.get(0);
 
     }
 

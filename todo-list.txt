@@ -1,6 +1,5 @@
-Bring back lists for search results instead of exact match only
+Fix the search to work better with Ands instead of Ors + include all fields in the search
 Show search results list
-Load code tables
 Apply CSS
 Apply validations
 PDF report of room content
@@ -8,3 +7,6 @@ Fix edit room and article to keep the image when not selecting a picture
 Accepts bigger images and of different types
 Fix save container ... it updates always id 1 instead of creating a new one
 Save the linked entities like person id in article
+Add a real database
+Add unit tests
+Add integration tests
